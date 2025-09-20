@@ -8,7 +8,8 @@
     "--cap-add=SYS_ADMIN",
     "--memory=128g",
     "--memory-swap=128g",
-    "--shm-size=2g"
+    "--shm-size=2g",
+    "--privileged"
   ],
   "mounts": [
     "source=/workspaces,target=/workspaces,type=bind,consistency=cached"
