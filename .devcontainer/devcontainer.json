@@ -2,7 +2,7 @@
   "name": "Mining VPS with RDP & SKLauncher",
   "build": {
     "dockerfile": "Dockerfile",
-    "context": "."
+    "context": ".."
   },
   "runArgs": [
     "--cap-add=SYS_ADMIN",
