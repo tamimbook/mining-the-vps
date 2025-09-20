@@ -1,11 +1,31 @@
 {
-  "name": "Mining VPS",
+  "name": "Mining VPS with RDP & SKLauncher",
   "build": {
-    "dockerfile": "../Dockerfile"
+    "dockerfile": "Dockerfile",
+    "context": ".."
   },
-  "runArgs": ["--cap-add=SYS_ADMIN", "--memory=128g", "--memory-swap=128g"],
+  "runArgs": [
+    "--cap-add=SYS_ADMIN",
+    "--memory=128g",
+    "--memory-swap=128g",
+    "--shm-size=2g"
+  ],
+  "mounts": [
+    "source=/workspaces,target=/workspaces,type=bind,consistency=cached"
+  ],
   "remoteUser": "minecraftuser",
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {}
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installGit": true,
+      "installGpg": true
+    }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y sudo curl wget net-tools",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers"
+      ]
+    }
   }
 }
