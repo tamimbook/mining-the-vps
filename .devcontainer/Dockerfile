@@ -3,8 +3,9 @@ FROM ubuntu:20.04
 # Avoid interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install essentials, XRDP, XFCE, Java, and Mesa for software rendering
+# Install essentials, XRDP, XFCE, Java, and Mesa for software rendering, including apt-utils
 RUN apt-get update && apt-get install -y \
+    apt-utils \
     sudo \
     curl \
     wget \
@@ -19,7 +20,7 @@ RUN apt-get update && apt-get install -y \
     net-tools \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy the heal script from the repo
+# Copy the heal script from the .devcontainer folder
 COPY lapdev_heal.sh /workspaces/lapdev_heal.sh
 
 # Create non-root user for RDP
