@@ -19,7 +19,10 @@ RUN apt-get update && apt-get install -y \
     net-tools \
     && rm -rf /var/lib/apt/lists/*
 
-# Create non-root user for RDP (matches your setup script)
+# Copy the heal script from the repo
+COPY lapdev_heal.sh /workspaces/lapdev_heal.sh
+
+# Create non-root user for RDP
 RUN useradd -m -s /bin/bash minecraftuser \
     && echo "minecraftuser:minecraft123" | chpasswd \
     && usermod -aG sudo minecraftuser \
