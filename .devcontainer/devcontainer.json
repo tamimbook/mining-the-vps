@@ -2,7 +2,9 @@
   "name": "Mining VPS with RDP & SKLauncher",
   "build": {
     "dockerfile": "Dockerfile",
-    "context": "."
+    "context": ".",
+    "args": {
+      "LAPDEV_USER": "${localEnv:USER}"
   },
   "runArgs": [
     "--cap-add=SYS_ADMIN",
@@ -14,7 +16,7 @@
   "mounts": [
     "source=/workspaces,target=/workspaces,type=bind,consistency=cached"
   ],
-  "remoteUser": "mining-the-vps-9qtajn0flxdl",
+  "remoteUser": "${localEnv:USER}",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installGit": true,
