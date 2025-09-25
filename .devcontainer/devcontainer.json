@@ -14,7 +14,7 @@
   "mounts": [
     "source=/workspaces,target=/workspaces,type=bind,consistency=cached"
   ],
-  "remoteUser": "minecraftuser",
+  "remoteUser": "mining-the-vps-9qtajn0flxdl",
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
       "installGit": true,
