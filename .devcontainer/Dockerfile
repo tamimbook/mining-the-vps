@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
 
 # Copy the heal script from the .devcontainer folder
 COPY lapdev_heal.sh /workspaces/lapdev_heal.sh
+COPY fastfetch_installation.sh /workspaces/fastfetch_installation.sh
 
 # Create the SSH user assigned by lap.dev
 RUN useradd -m -s /bin/bash mining-the-vps-9qtajn0flxdl \
