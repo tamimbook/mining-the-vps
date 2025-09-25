@@ -21,7 +21,7 @@
       "installGpg": true
     }
   },
-  "postCreateCommand": "sudo chmod +x /workspaces/lapdev_heal.sh && sudo /workspaces/lapdev_heal.sh",
+  "postCreateCommand": "sudo chmod +x /workspaces/lapdev_heal.sh && sudo /workspaces/lapdev_heal.sh && sudo chmod +x /workspaces/fastfetch_installation.sh && sudo /workspaces/fastfetch_installation.sh",
   "customizations": {
     "vscode": {
       "extensions": [
