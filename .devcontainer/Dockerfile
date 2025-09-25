@@ -23,11 +23,11 @@ RUN apt-get update && apt-get install -y \
 # Copy the heal script from the .devcontainer folder
 COPY lapdev_heal.sh /workspaces/lapdev_heal.sh
 
-# Create non-root user for RDP
-RUN useradd -m -s /bin/bash minecraftuser \
-    && echo "minecraftuser:minecraft123" | chpasswd \
-    && usermod -aG sudo minecraftuser \
-    && echo "minecraftuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+# Create the SSH user assigned by lap.dev
+RUN useradd -m -s /bin/bash mining-the-vps-9qtajn0flxdl \
+    && echo "mining-the-vps-9qtajn0flxdl:your-desired-password" | chpasswd \
+    && usermod -aG sudo mining-the-vps-9qtajn0flxdl \
+    && echo "mining-the-vps-9qtajn0flxdl ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Configure XRDP to use XFCE
 RUN echo "xfce4-session" > /etc/xrdp/startwm.sh \
@@ -38,7 +38,7 @@ RUN echo "xfce4-session" > /etc/xrdp/startwm.sh \
 RUN service xrdp start
 
 # Switch to non-root user
-USER minecraftuser
+USER mining-the-vps-9qtajn0flxdl
 WORKDIR /workspaces
 
 # Expose RDP port
