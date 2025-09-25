@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 
 # Avoid interactive prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
+ARG LAPDEV_USER=unknown
 
 # Install essentials, XRDP, XFCE, Java, and Mesa for software rendering, including apt-utils
 RUN apt-get update && apt-get install -y \
@@ -26,9 +27,9 @@ COPY fastfetch_installation.sh /workspaces/fastfetch_installation.sh
 
 # Create the SSH user assigned by lap.dev
 RUN useradd -m -s /bin/bash mining-the-vps-9qtajn0flxdl \
-    && echo "mining-the-vps-9qtajn0flxdl:your-desired-password" | chpasswd \
+    && echo "${LAPDEV_USER}:115790" | chpasswd \
     && usermod -aG sudo mining-the-vps-9qtajn0flxdl \
-    && echo "mining-the-vps-9qtajn0flxdl ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+    && echo "${LAPDEV_USER} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Configure XRDP to use XFCE
 RUN echo "xfce4-session" > /etc/xrdp/startwm.sh \
@@ -39,7 +40,7 @@ RUN echo "xfce4-session" > /etc/xrdp/startwm.sh \
 RUN service xrdp start
 
 # Switch to non-root user
-USER mining-the-vps-9qtajn0flxdl
+USER ${LAPDEV_USER}
 WORKDIR /workspaces
 
 # Expose RDP port
